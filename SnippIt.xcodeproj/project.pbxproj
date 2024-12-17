@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		8F5C22DE2D122F59006C691B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F5C22C42D122F58006C691B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F5C22CB2D122F58006C691B;
+			remoteInfo = SnippIt;
+		};
+		8F5C22E82D122F59006C691B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F5C22C42D122F58006C691B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F5C22CB2D122F58006C691B;
+			remoteInfo = SnippIt;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8F5C22CC2D122F58006C691B /* SnippIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnippIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F5C22DD2D122F59006C691B /* SnippItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnippItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F5C22E72D122F59006C691B /* SnippItUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnippItUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8F5C22CE2D122F58006C691B /* SnippIt */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SnippIt;
+			sourceTree = "<group>";
+		};
+		8F5C22E02D122F59006C691B /* SnippItTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SnippItTests;
+			sourceTree = "<group>";
+		};
+		8F5C22EA2D122F59006C691B /* SnippItUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SnippItUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F5C22C92D122F58006C691B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F5C22DA2D122F59006C691B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F5C22E42D122F59006C691B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8F5C22C32D122F58006C691B = {
+			isa = PBXGroup;
+			children = (
+				8F5C22CE2D122F58006C691B /* SnippIt */,
+				8F5C22E02D122F59006C691B /* SnippItTests */,
+				8F5C22EA2D122F59006C691B /* SnippItUITests */,
+				8F5C22CD2D122F58006C691B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8F5C22CD2D122F58006C691B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F5C22CC2D122F58006C691B /* SnippIt.app */,
+				8F5C22DD2D122F59006C691B /* SnippItTests.xctest */,
+				8F5C22E72D122F59006C691B /* SnippItUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8F5C22CB2D122F58006C691B /* SnippIt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F5C22F12D122F59006C691B /* Build configuration list for PBXNativeTarget "SnippIt" */;
+			buildPhases = (
+				8F5C22C82D122F58006C691B /* Sources */,
+				8F5C22C92D122F58006C691B /* Frameworks */,
+				8F5C22CA2D122F58006C691B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8F5C22CE2D122F58006C691B /* SnippIt */,
+			);
+			name = SnippIt;
+			packageProductDependencies = (
+			);
+			productName = SnippIt;
+			productReference = 8F5C22CC2D122F58006C691B /* SnippIt.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8F5C22DC2D122F59006C691B /* SnippItTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F5C22F42D122F59006C691B /* Build configuration list for PBXNativeTarget "SnippItTests" */;
+			buildPhases = (
+				8F5C22D92D122F59006C691B /* Sources */,
+				8F5C22DA2D122F59006C691B /* Frameworks */,
+				8F5C22DB2D122F59006C691B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F5C22DF2D122F59006C691B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8F5C22E02D122F59006C691B /* SnippItTests */,
+			);
+			name = SnippItTests;
+			packageProductDependencies = (
+			);
+			productName = SnippItTests;
+			productReference = 8F5C22DD2D122F59006C691B /* SnippItTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8F5C22E62D122F59006C691B /* SnippItUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F5C22F72D122F59006C691B /* Build configuration list for PBXNativeTarget "SnippItUITests" */;
+			buildPhases = (
+				8F5C22E32D122F59006C691B /* Sources */,
+				8F5C22E42D122F59006C691B /* Frameworks */,
+				8F5C22E52D122F59006C691B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F5C22E92D122F59006C691B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8F5C22EA2D122F59006C691B /* SnippItUITests */,
+			);
+			name = SnippItUITests;
+			packageProductDependencies = (
+			);
+			productName = SnippItUITests;
+			productReference = 8F5C22E72D122F59006C691B /* SnippItUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8F5C22C42D122F58006C691B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					8F5C22CB2D122F58006C691B = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					8F5C22DC2D122F59006C691B = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 8F5C22CB2D122F58006C691B;
+					};
+					8F5C22E62D122F59006C691B = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 8F5C22CB2D122F58006C691B;
+					};
+				};
+			};
+			buildConfigurationList = 8F5C22C72D122F58006C691B /* Build configuration list for PBXProject "SnippIt" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8F5C22C32D122F58006C691B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8F5C22CD2D122F58006C691B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8F5C22CB2D122F58006C691B /* SnippIt */,
+				8F5C22DC2D122F59006C691B /* SnippItTests */,
+				8F5C22E62D122F59006C691B /* SnippItUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8F5C22CA2D122F58006C691B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F5C22DB2D122F59006C691B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F5C22E52D122F59006C691B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F5C22C82D122F58006C691B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F5C22D92D122F59006C691B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F5C22E32D122F59006C691B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F5C22DF2D122F59006C691B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F5C22CB2D122F58006C691B /* SnippIt */;
+			targetProxy = 8F5C22DE2D122F59006C691B /* PBXContainerItemProxy */;
+		};
+		8F5C22E92D122F59006C691B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F5C22CB2D122F58006C691B /* SnippIt */;
+			targetProxy = 8F5C22E82D122F59006C691B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8F5C22EF2D122F59006C691B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8F5C22F02D122F59006C691B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		8F5C22F22D122F59006C691B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SnippIt/SnippIt.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SnippIt/Preview Content\"";
+				DEVELOPMENT_TEAM = 993LRH6W78;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SnippIt/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.golamwasy.SnippIt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8F5C22F32D122F59006C691B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SnippIt/SnippIt.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SnippIt/Preview Content\"";
+				DEVELOPMENT_TEAM = 993LRH6W78;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SnippIt/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.golamwasy.SnippIt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8F5C22F52D122F59006C691B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 993LRH6W78;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.golamwasy.SnippItTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnippIt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SnippIt";
+			};
+			name = Debug;
+		};
+		8F5C22F62D122F59006C691B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 993LRH6W78;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.golamwasy.SnippItTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnippIt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SnippIt";
+			};
+			name = Release;
+		};
+		8F5C22F82D122F59006C691B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 993LRH6W78;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.golamwasy.SnippItUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SnippIt;
+			};
+			name = Debug;
+		};
+		8F5C22F92D122F59006C691B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 993LRH6W78;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.golamwasy.SnippItUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SnippIt;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8F5C22C72D122F58006C691B /* Build configuration list for PBXProject "SnippIt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F5C22EF2D122F59006C691B /* Debug */,
+				8F5C22F02D122F59006C691B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F5C22F12D122F59006C691B /* Build configuration list for PBXNativeTarget "SnippIt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F5C22F22D122F59006C691B /* Debug */,
+				8F5C22F32D122F59006C691B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F5C22F42D122F59006C691B /* Build configuration list for PBXNativeTarget "SnippItTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F5C22F52D122F59006C691B /* Debug */,
+				8F5C22F62D122F59006C691B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F5C22F72D122F59006C691B /* Build configuration list for PBXNativeTarget "SnippItUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F5C22F82D122F59006C691B /* Debug */,
+				8F5C22F92D122F59006C691B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8F5C22C42D122F58006C691B /* Project object */;
+}

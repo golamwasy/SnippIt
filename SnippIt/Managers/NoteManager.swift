@@ -62,8 +62,12 @@ struct NoteUpdateResponse: Codable {
     let note: File
 }
 
-struct ServerResponse: Decodable {
+struct ServerFileResponse: Decodable {
     let file: File
+}
+
+struct ServerGroupResponse: Decodable {
+    let group: Group
 }
 
 class NoteManager: ObservableObject {
@@ -147,11 +151,10 @@ class NoteManager: ObservableObject {
 
     // MARK: - Group Operations
     func addGroup(name: String) {
-        guard let url = URL(string: "\(serverURL)/notes/group") else { return }
+        guard let url = URL(string: "\(serverURL)/groups") else { return }
 
         let body: [String: Any] = [
-            "name": name,
-            "type": "group"
+            "name": name
         ]
 
         var request = URLRequest(url: url)
@@ -181,7 +184,7 @@ class NoteManager: ObservableObject {
     }
 
     func renameGroup(_ group: Group, newName: String) {
-        guard let url = URL(string: "\(serverURL)/notes/group/\(group.id.uuidString)/rename") else { return }
+        guard let url = URL(string: "\(serverURL)/notes/group/\(group.id.uuidString.lowercased())/rename") else { return }
 
         let body: [String: Any] = ["newName": newName]
 
@@ -200,12 +203,18 @@ class NoteManager: ObservableObject {
             guard let data = data else { return }
 
             do {
-                let updatedGroup = try JSONDecoder().decode(Group.self, from: data)
+                // Decode the server response to get the `file` object
+                let serverResponse = try JSONDecoder().decode(ServerGroupResponse.self, from: data)
+                let updatedGroup = serverResponse.group
+                
+                print(updatedGroup)
+                
                 DispatchQueue.main.async {
-                    if let index = self.groups.firstIndex(where: { $0.id == group.id }) {
-                        self.groups[index] = updatedGroup
+                    if let groupIndex = self.groups.firstIndex(where: { $0.id == updatedGroup.id }) {
+                        // Update the corresponding file in your array
+                        self.groups[groupIndex] = updatedGroup
+                        print("Group renamed successfully to: \(updatedGroup.name)")
                     }
-                    print("Group renamed successfully to: \(updatedGroup.name)")
                 }
             } catch {
                 print("Failed to decode server response: \(error)")
@@ -234,11 +243,8 @@ class NoteManager: ObservableObject {
 
             do {
                 // Decode the server response to get the `file` object
-                let serverResponse = try JSONDecoder().decode(ServerResponse.self, from: data)
+                let serverResponse = try JSONDecoder().decode(ServerFileResponse.self, from: data)
                 let updatedFile = serverResponse.file
-
-                // Create a `Note.file` case from the updated file
-                let updatedNote = Note.file(updatedFile)
 
                 DispatchQueue.main.async {
                     if let fileIndex = self.files.firstIndex(where: { $0.id == updatedFile.id }) {
@@ -254,7 +260,7 @@ class NoteManager: ObservableObject {
     }
 
     func deleteGroup(_ group: Group) {
-        guard let url = URL(string: "\(serverURL)/notes/group/\(group.id.uuidString)") else { return }
+        guard let url = URL(string: "\(serverURL)/notes/group/\(group.id.uuidString.lowercased())") else { return }
 
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
@@ -275,13 +281,12 @@ class NoteManager: ObservableObject {
 
     // MARK: - File Operations
     func addFile(to group: Group, name: String, content: String) {
-        guard let url = URL(string: "\(serverURL)/notes/file") else { return }
+        guard let url = URL(string: "\(serverURL)/notes") else { return }
 
         let body: [String: Any] = [
             "name": name,
-            "type": "file",
             "content": content,
-            "parentId": group.id.uuidString
+            "parentId": group.id.uuidString.lowercased()
         ]
 
         var request = URLRequest(url: url)
@@ -301,8 +306,8 @@ class NoteManager: ObservableObject {
             do {
                 let newFile = try JSONDecoder().decode(File.self, from: data)
                 DispatchQueue.main.async {
-                    if let groupIndex = self.groups.firstIndex(where: { $0.id == group.id }) {
-                        self.groups[groupIndex].files.append(newFile)
+                    if self.groups.firstIndex(where: { $0.id == group.id }) != nil {
+                        self.files.append(newFile)
                     }
                     print("File added successfully: \(newFile.name)")
                 }

@@ -19,69 +19,20 @@ struct SidebarView: View {
     var body: some View {
         VStack {
             List {
-                // Display each group in the list
                 ForEach(noteManager.groups) { group in
-                    DisclosureGroup(
-                        content: {
-                            // Display files nested under the group
-                            ForEach(noteManager.files.filter { file in file.parentId == group.id }) { file in
-                                HStack {
-                                    Text(file.name)
-                                        .padding(5)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .background(file.id == selectedFile?.id ? Color.blue.opacity(0.2) : Color.clear)
-                                        .cornerRadius(5)
-                                        .onTapGesture {
-                                            selectedFile = file
-                                            selectedGroup = group
-                                        }
-                                }
-                                .contextMenu {
-                                    Button("Rename File") {
-                                        renamingFile = file
-                                        newName = file.name
-                                    }
-                                    Button("Delete File") {
-                                        noteManager.deleteFile(file, from: group)
-                                    }
-                                }
-                            }
-                        },
-                        label: {
-                            // Render group name and add file button
-                            HStack {
-                                Text(group.name)
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                                Button(action: {
-                                    noteManager.addFile(to: group, name: "New File", content: "Placeholder Content")
-                                }) {
-                                    Image(systemName: "plus.circle.fill")
-                                        .font(.system(size: 18))
-                                        .foregroundColor(.blue)
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                                .help("Add File")
-                            }
-                            .contextMenu {
-                                Button("Rename Group") {
-                                    renamingGroup = group
-                                    newName = group.name
-                                }
-                                Button("Delete Group") {
-                                    noteManager.deleteGroup(file, from: group)
-                                }
-                            }
-                            .padding(.vertical, 5)
-                        }
+                    GroupView(
+                        group: group,
+                        noteManager: noteManager,
+                        selectedFile: $selectedFile,
+                        selectedGroup: $selectedGroup,
+                        renamingGroup: $renamingGroup,
+                        renamingFile: $renamingFile,
+                        newName: $newName
                     )
                 }
             }
             .listStyle(SidebarListStyle())
 
-            // Button to add a new group
             Button(action: {
                 noteManager.addGroup(name: "New Group")
             }) {
@@ -118,6 +69,92 @@ struct SidebarView: View {
         }
         .onAppear {
             noteManager.fetchNotes()
+        }
+    }
+}
+
+struct GroupView: View {
+    let group: Group
+    @ObservedObject var noteManager: NoteManager
+    @Binding var selectedFile: File?
+    @Binding var selectedGroup: Group?
+    @Binding var renamingGroup: Group?
+    @Binding var renamingFile: File?
+    @Binding var newName: String
+
+    var body: some View {
+        DisclosureGroup {
+            ForEach(noteManager.files.filter { $0.parentId == group.id }) { file in
+                FileRowView(
+                    file: file,
+                    group: group,
+                    noteManager: noteManager,
+                    selectedFile: $selectedFile,
+                    selectedGroup: $selectedGroup,
+                    renamingFile: $renamingFile,
+                    newName: $newName
+                )
+            }
+        } label: {
+            HStack {
+                Text(group.name)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                Button(action: {
+                    noteManager.addFile(to: group, name: "New File", content: "Placeholder Content")
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 18))
+                        .foregroundColor(.blue)
+                }
+                .buttonStyle(PlainButtonStyle())
+                .help("Add File")
+            }
+            .contextMenu {
+                Button("Rename Group") {
+                    renamingGroup = group
+                    newName = group.name
+                }
+                Button("Delete Group") {
+                    noteManager.deleteGroup(group)
+                }
+            }
+            .padding(.vertical, 5)
+        }
+    }
+}
+
+struct FileRowView: View {
+    let file: File
+    let group: Group
+    @ObservedObject var noteManager: NoteManager
+    @Binding var selectedFile: File?
+    @Binding var selectedGroup: Group?
+    @Binding var renamingFile: File?
+    @Binding var newName: String
+
+    var body: some View {
+        HStack {
+            Text(file.name)
+                .padding(5)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(file.id == selectedFile?.id ? Color.blue.opacity(0.2) : Color.clear)
+                .cornerRadius(5)
+                .onTapGesture {
+                    selectedFile = file
+                    selectedGroup = group
+                }
+        }
+        .contextMenu {
+            Button("Rename File") {
+                renamingFile = file
+                newName = file.name
+            }
+            Button("Delete File") {
+                noteManager.deleteFile(file, from: group)
+            }
         }
     }
 }

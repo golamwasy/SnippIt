@@ -71,9 +71,8 @@ struct TextEditorView: View {
 
     private func handleContentChange(newContent: String, for file: File, in group: Group) {
         // Trigger content update in NoteManager
-
         if contentHasChanged(newContent: newContent, for: file, in: group) {
-            noteManager.updateFileContent(file, in: group, newContent: newContent)
+            noteManager.updateFileContent(file, newContent: newContent)
         }
     }
 

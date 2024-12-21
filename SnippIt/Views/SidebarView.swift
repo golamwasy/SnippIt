@@ -19,16 +19,20 @@ struct SidebarView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(noteManager.groups) { group in
-                    GroupView(
-                        group: group,
-                        noteManager: noteManager,
-                        selectedFile: $selectedFile,
-                        selectedGroup: $selectedGroup,
-                        renamingGroup: $renamingGroup,
-                        renamingFile: $renamingFile,
-                        newName: $newName
-                    )
+                if noteManager.groups.isEmpty {
+                    Text("No groups available").foregroundColor(.gray)
+                } else {
+                    ForEach(noteManager.groups) { group in
+                        GroupView(
+                            group: group,
+                            noteManager: noteManager,
+                            selectedFile: $selectedFile,
+                            selectedGroup: $selectedGroup,
+                            renamingGroup: $renamingGroup,
+                            renamingFile: $renamingFile,
+                            newName: $newName
+                        )
+                    }
                 }
             }
             .listStyle(SidebarListStyle())
@@ -56,19 +60,18 @@ struct SidebarView: View {
             })
         }
         .sheet(item: $renamingFile) { file in
-            if let group = selectedGroup {
-                RenameView(name: $newName, onSave: {
-                    noteManager.renameFile(file, in: group, newName: newName)
-                    renamingFile = nil
-                    newName = ""
-                }, onCancel: {
-                    renamingFile = nil
-                    newName = ""
-                })
-            }
+            RenameView(name: $newName, onSave: {
+                noteManager.renameFile(file, newName: newName)
+                renamingFile = nil
+                newName = ""
+            }, onCancel: {
+                renamingFile = nil
+                newName = ""
+            })
         }
         .onAppear {
-            noteManager.fetchNotes()
+            noteManager.fetchGroups()
+            noteManager.fetchFiles()
         }
     }
 }
@@ -153,7 +156,7 @@ struct FileRowView: View {
                 newName = file.name
             }
             Button("Delete File") {
-                noteManager.deleteFile(file, from: group)
+                noteManager.deleteFile(file)
             }
         }
     }

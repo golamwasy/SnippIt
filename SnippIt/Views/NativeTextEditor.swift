@@ -66,7 +66,8 @@ struct NativeTextEditor: NSViewRepresentable {
         scrollView.backgroundColor = .textBackgroundColor
 
         // TextKit 1 exposes the line fragments used to align the custom gutter.
-        let textView = NoteTextView(usingTextLayoutManager: false)
+        // The editor never takes focus by itself; focusing starts the text input system.
+        let textView = NSTextView(usingTextLayoutManager: false)
         textView.frame = scrollView.contentView.bounds
         textView.minSize = .zero
         textView.maxSize = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
@@ -154,17 +155,6 @@ struct NativeTextEditor: NSViewRepresentable {
                 if self.parent.position != position { self.parent.position = position }
             }
             ruler?.needsDisplay = true
-        }
-    }
-}
-
-final class NoteTextView: NSTextView {
-    override func viewDidMoveToWindow() {
-        super.viewDidMoveToWindow()
-        guard let window else { return }
-        DispatchQueue.main.async { [weak self, weak window] in
-            guard let self, let window, self.window === window else { return }
-            window.makeFirstResponder(self)
         }
     }
 }

@@ -13,6 +13,7 @@ final class SnippItUITests: XCTestCase {
         app.typeKey("n", modifierFlags: .command)
         let editor = app.textViews["noteEditor"]
         XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        editor.click()
         let text = "Remember this after restarting.\nSecond line\nThird line\n"
         editor.typeText(text)
         XCTAssertEqual(editor.value as? String, text)
@@ -44,6 +45,7 @@ final class SnippItUITests: XCTestCase {
         app.typeKey("n", modifierFlags: .command)
         let editor = app.textViews["noteEditor"]
         XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        editor.click()
         editor.typeText("Weekend plans\nWalk by the sea.")
         let title = app.textFields["noteTitle"]
         XCTAssertEqual(title.value as? String, "Weekend plans")

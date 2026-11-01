@@ -18,6 +18,9 @@ struct NoteTitleField: View {
     let note: Note
     let onRename: (String) -> Void
     @State private var draft = ""
+    /// The name last shown in the field. Only typing a different title renames the note,
+    /// so focus changes alone never pin an outdated automatic title.
+    @State private var shownName = ""
     @FocusState private var isFocused: Bool
 
     var body: some View {
@@ -26,9 +29,9 @@ struct NoteTitleField: View {
             .accessibilityIdentifier("noteTitle")
             .help("Rename this note")
             .focused($isFocused)
-            .onAppear { draft = note.name }
+            .onAppear { show(note.name) }
             .onChange(of: note.name) { _, title in
-                if !isFocused { draft = title }
+                if !isFocused { show(title) }
             }
             .onChange(of: isFocused) { _, focused in
                 if !focused { commit() }
@@ -38,7 +41,7 @@ struct NoteTitleField: View {
                 isFocused = false
             }
             .onExitCommand {
-                draft = note.name
+                show(note.name)
                 isFocused = false
             }
             .onDisappear {
@@ -46,9 +49,14 @@ struct NoteTitleField: View {
             }
     }
 
+    private func show(_ name: String) {
+        draft = name
+        shownName = name
+    }
+
     private func commit() {
         let title = draft.trimmingCharacters(in: .whitespacesAndNewlines)
-        if !title.isEmpty, title != note.name { onRename(title) }
-        else { draft = note.name }
+        if !title.isEmpty, draft != shownName, title != note.name { onRename(title) }
+        else { show(note.name) }
     }
 }

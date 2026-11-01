@@ -45,9 +45,11 @@ final class SnippItUITests: XCTestCase {
         app.typeKey("n", modifierFlags: .command)
         let editor = app.textViews["noteEditor"]
         XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        let title = app.textFields["noteTitle"]
+        // Focusing the title without editing it must not pin the automatic title.
+        title.click()
         editor.click()
         editor.typeText("Weekend plans\nWalk by the sea.")
-        let title = app.textFields["noteTitle"]
         XCTAssertEqual(title.value as? String, "Weekend plans")
         title.click()
         title.typeKey("a", modifierFlags: .command)

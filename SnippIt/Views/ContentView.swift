@@ -1,32 +1,56 @@
-//
-//  ContentView.swift
-//  SnippIt
-//
-//  Created by Golam Wasy Arnob on 18.12.2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var noteManager = NoteManager()
-    @State private var selectedGroup: Group? = nil
-    @State private var selectedFile: File? = nil
+    @ObservedObject var noteManager: NoteManager
+    @ObservedObject var settings: EditorSettings
 
     var body: some View {
-        if noteManager.isLoggedIn {
-            HStack(spacing: 0) {
-                SidebarView(noteManager: noteManager, selectedFile: $selectedFile, selectedGroup: $selectedGroup)
-                    .frame(minWidth: 250, maxWidth: 300)
-
+        VStack(spacing: 0) {
+            if !noteManager.errorMessage.isEmpty {
+                HStack(alignment: .top, spacing: 10) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.orange)
+                    Text(noteManager.errorMessage)
+                        .font(.callout)
+                        .textSelection(.enabled)
+                    Spacer()
+                    if noteManager.canEdit {
+                        Button("Retry Save") { noteManager.save() }
+                    }
+                }
+                .padding(12)
+                .background(.orange.opacity(0.1))
                 Divider()
-
-                // Pass selectedFile as a Binding
-                TextEditorView(noteManager: noteManager, group: selectedGroup, file: selectedFile)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-        } else {
-                LoginView(noteManager: noteManager)
+
+            NavigationSplitView {
+                SidebarView(noteManager: noteManager)
+                    .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 360)
+            } detail: {
+                TextEditorView(noteManager: noteManager)
+            }
+            .navigationSplitViewStyle(.balanced)
+            .toolbar {
+                ToolbarItemGroup {
+                    Button { noteManager.newNote() } label: {
+                        Label("New Note", systemImage: "square.and.pencil")
+                    }
+                    .help("New Note (⌘N)")
+                    .disabled(!noteManager.canEdit)
+
+                    Button {
+                        noteManager.addFolder()
+                    } label: {
+                        Label("New Folder", systemImage: "folder.badge.plus")
+                    }
+                    .help("New Folder (⇧⌘N)")
+                    .disabled(!noteManager.canEdit)
+                }
+            }
+            .disabled(!noteManager.canEdit)
         }
-        
+        .frame(minWidth: 720, minHeight: 440)
+        .environmentObject(settings)
     }
+
 }

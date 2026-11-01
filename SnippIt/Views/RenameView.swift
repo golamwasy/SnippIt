@@ -1,36 +1,32 @@
-//
-//  RenameDialog.swift
-//  SnippIt
-//
-//  Created by Golam Wasy Arnob on 18.12.2024.
-//
-
 import SwiftUI
 
 struct RenameView: View {
     @Binding var name: String
     var onSave: () -> Void
     var onCancel: () -> Void
+    @FocusState private var isFocused: Bool
 
     var body: some View {
-        VStack(spacing: 15) {
+        VStack(alignment: .leading, spacing: 20) {
             Text("Rename")
-                .font(.headline)
-            
-            TextField("Enter new name", text: $name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
+                .font(.title3.weight(.semibold))
+            TextField("Name", text: $name)
+                .textFieldStyle(.roundedBorder)
+                .focused($isFocused)
+                .onSubmit {
+                    if !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { onSave() }
+                }
             HStack {
-                Button("Cancel", action: onCancel)
-                    .foregroundColor(.red)
                 Spacer()
+                Button("Cancel", action: onCancel)
+                    .keyboardShortcut(.cancelAction)
                 Button("Save", action: onSave)
-                    .disabled(name.isEmpty)
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
-            .padding()
         }
-        .frame(width: 300)
-        .padding()
+        .padding(24)
+        .frame(width: 340)
+        .onAppear { isFocused = true }
     }
 }

@@ -1,43 +1,106 @@
-//
-//  SnippItUITests.swift
-//  SnippItUITests
-//
-//  Created by Golam Wasy Arnob on 18.12.2024.
-//
-
 import XCTest
 
 final class SnippItUITests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testNotesReturnAfterQuittingAndRelaunching() throws {
+        continueAfterFailure = false
         let app = XCUIApplication()
+        app.launchEnvironment["SNIPPIT_TEST_LIBRARY"] = UUID().uuidString
         app.launch()
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let newNote = app.buttons["New Note"].firstMatch
+        XCTAssertTrue(newNote.waitForExistence(timeout: 5))
+        app.typeKey("n", modifierFlags: .command)
+        let editor = app.textViews["noteEditor"]
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        let text = "Remember this after restarting.\nSecond line\nThird line\n"
+        editor.typeText(text)
+        XCTAssertEqual(editor.value as? String, text)
+
+        // No pause or manual Save before exiting.
+        app.terminate()
+        app.launch()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        XCTAssertEqual(editor.value as? String, text)
+        XCTAssertTrue(app.staticTexts["Saved on this Mac"].exists)
+
+        // Clearing a note must also be durable.
+        editor.click()
+        editor.typeKey("a", modifierFlags: .command)
+        editor.typeKey(.delete, modifierFlags: [])
+        app.terminate()
+        app.launch()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        XCTAssertEqual(editor.value as? String, "")
+        app.terminate()
     }
 
     @MainActor
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    func testAutomaticTitleRenameAndTrashRecovery() throws {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchEnvironment["SNIPPIT_TEST_LIBRARY"] = UUID().uuidString
+        app.launch()
+        app.typeKey("n", modifierFlags: .command)
+        let editor = app.textViews["noteEditor"]
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        editor.typeText("Weekend plans\nWalk by the sea.")
+        let title = app.textFields["noteTitle"]
+        XCTAssertEqual(title.value as? String, "Weekend plans")
+        title.click()
+        title.typeKey("a", modifierFlags: .command)
+        title.typeText("My plans")
+        title.typeKey(.return, modifierFlags: [])
+        editor.click()
+        editor.typeKey(.downArrow, modifierFlags: .command)
+        editor.typeText("\nBring coffee.")
+        XCTAssertEqual(title.value as? String, "My plans")
+
+        app.descendants(matching: .any).matching(identifier: "noteActions").firstMatch.click()
+        app.menuItems["Move to Recently Deleted"].click()
+        XCTAssertFalse(editor.exists)
+        app.buttons["Recently Deleted"].click()
+        XCTAssertTrue(app.buttons["Restore"].firstMatch.waitForExistence(timeout: 5))
+        app.buttons["Restore"].firstMatch.click()
+        app.buttons["Done"].click()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        XCTAssertEqual(editor.value as? String, "Weekend plans\nWalk by the sea.\nBring coffee.")
+        XCTAssertEqual(title.value as? String, "My plans")
+        app.terminate()
+        app.launch()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        XCTAssertEqual(title.value as? String, "My plans")
+        XCTAssertEqual(editor.value as? String, "Weekend plans\nWalk by the sea.\nBring coffee.")
+        app.terminate()
+    }
+
+    @MainActor
+    func testEditorWithWrappedAndScrolledLines() throws {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchEnvironment["SNIPPIT_TEST_LIBRARY"] = UUID().uuidString
+        app.launch()
+        app.buttons["New Note"].firstMatch.click()
+        let editor = app.textViews["noteEditor"]
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        editor.click()
+        let wrapped = "This is a longer thought that wraps naturally in the editor. "
+        let text = "A place for ideas\n\n" + String(repeating: wrapped, count: 6)
+            + "\n\n" + (5...45).map { "Line \($0): a small note for later." }.joined(separator: "\n") + "\n"
+        editor.typeText(text)
+        XCTAssertEqual(editor.value as? String, text)
+
+        editor.typeKey(.upArrow, modifierFlags: [.command])
+        let top = XCTAttachment(screenshot: app.screenshot())
+        top.name = "Editor — wrapped lines"
+        top.lifetime = .keepAlways
+        add(top)
+
+        editor.typeKey(.downArrow, modifierFlags: [.command])
+        let bottom = XCTAttachment(screenshot: app.screenshot())
+        bottom.name = "Editor — scrolled lines"
+        bottom.lifetime = .keepAlways
+        add(bottom)
+        app.terminate()
     }
 }
